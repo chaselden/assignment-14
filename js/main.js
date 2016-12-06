@@ -1,42 +1,63 @@
 // GO!
 
     // TASK 1 -- Show/Hide Nav
-  var navButt = document.querySelector('button')
-var infoBar = document.querySelector('.nav-menu')
+ var navButtEl = document.querySelector('#hide-nav button')
+ var infoBar = document.querySelector('.nav-menu')
 
-function hideBar() {
+navButtEl.addEventListener('click', function hideBar(){
 
-    if (infoBar.className === 'nav-menu'){
-        infoBar.className = 'nav-menu nav-menu-hidden'
-      }else{
-        infoBar.className = 'nav-menu'
+    if (infoBar.classList.contains('nav-menu')){
+        infoBar.classList.add('nav-menu-hidden')
+        infoBar.classList.remove('nav-menu')
+      } else {
+        infoBar.classList.remove('nav-menu-hidden')
+        infoBar.classList.add('nav-menu')
       }
-
-  }
-navButt.addEventListener('click', hideBar)
+  })
 
 
 
 
 // TASK 2 -- Select an Icon
-var thisOne = document.querySelector(".wish-list")
+var thisOneEl = document.querySelector(".wish-list")
 
-function selector(evt) {
-var noClass = evt.target.classList
+var selectorEl = function(evt) {
+  // console.log(evt.target.className);
 
-   if (noClass.contains('selected') === true){
-       noClass.remove('selected')
-  }else{
-     (noClass.contains('selected') === true);
-        noClass.add('selected')
-        console.log(noClass)
+   if (evt.target.className === "option selected"){
+       evt.target.className = "option"
+   } else if(evt.target.className === "option"){
+       evt.target.className = "option selected"
    }
  }
-thisOne.addEventListener('click', selector)
+thisOneEl.addEventListener('click',selectorEl)
+
 
 
 //
-TASK 3 -- Move Item From List to List
+// TASK 3 -- Move Item From List to List
+var goodListEl = document.querySelector('.good-standing-list')
+var probListEl = document.querySelector('.probation-list')
+
+function moveToProbList(evnt) {
+    var onProBation = document.querySelector('.probation-section ul')
+
+        onProBation.appendChild(evnt.target)
+}
+
+function moveTogood(evnt) {
+    var goodList = document.querySelector('.good-standing-section ul')
+
+    goodList.appendChild(evnt.target)
+}
+
+
+goodListEl.addEventListener("click", moveToProbList)
+probListEl.addEventListener("click", moveTogood)
+
+
+
+
 
 // TASK 4 -- Add Guest to List
 
